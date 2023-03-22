@@ -44,7 +44,6 @@ def get_fire_title():
 
     if len(titles) > 0:
         title = '\n'.join(titles)
-        # print("total title char: ", len(title))
         print(title)
         return title
     else:
