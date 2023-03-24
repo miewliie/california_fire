@@ -43,6 +43,7 @@ def get_fire_title():
         titles.append(str_title)
 
     if len(titles) > 0:
+        titles.append("#california #californiawildfire #californiafire")
         title = '\n'.join(titles)
         print(title)
         return title
