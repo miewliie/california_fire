@@ -1,0 +1,43 @@
+name: Fire Toot workflow
+
+on:
+  workflow_dispatch:
+#   schedule:
+#     - cron: "1 */5 * * *"
+
+jobs:
+  toot:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Request fire data and write into Json file
+        run: |-
+          cd /home/runner/work/california_fire/california_fire/api 
+          python3 fire_api.py
+          
+      - name: Install dependencies 
+        run: |-
+          cd /home/runner/work/california_fire/california_fire
+          pip3 install Mastodon.py
+          python3 -m pip install --upgrade Pillow
+
+      - name: Post fire title and map into Mastodon
+        run: |-
+          cd /home/runner/work/california_fire/california_fire
+          python3 toot.py
+        env:
+          MASTODON_EMAIL: ${{ secrets.MASTODON_EMAIL }}
+          MASTODON_PASSWORD: ${{ secrets.MASTODON_PASSWORD }}
+          MASTODON_SERVER: ${{ secrets.MASTODON_SERVER }}
+
+      - name: Commit and push if api changed
+        run: |-
+          cd /home/runner/work/california_fire/california_fire/
+          git config user.name "Automated"
+          git config user.email "actions@users.noreply.github.com"
+          git add outputs/earthquake.json
+          timestamp=$(date -u)
+          git commit -m "Latest response: ${timestamp}" || exit 0
+          git push
