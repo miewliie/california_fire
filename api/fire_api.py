@@ -1,7 +1,6 @@
 import requests
 import json
 
-# URL = "https://incidents.fire.ca.gov/umbraco/api/IncidentApi/List?inactive=true&year=2022"
 URL = "https://incidents.fire.ca.gov/umbraco/api/IncidentApi/List?"
 STATUS = 'true'
 YEAR = '2022'
@@ -22,3 +21,4 @@ def write_response(data):
 if __name__ == '__main__':
     fire_data = request_fire()
     write_response(fire_data)
+    # TODO: compare new fire json data with the old one and save new data only
