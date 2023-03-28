@@ -43,6 +43,7 @@ if __name__ == '__main__':
     output_path = "./outputs/california_fire_map.png"
 
     fire_data = read_json_output()
-    draw_fire_points(image_path, output_path, fire_data)
-    fire_info = get_fire_title()
-    send_new_status_for(fire_info, output_path)
+    if fire_data:
+        draw_fire_points(image_path, output_path, fire_data)
+        fire_info = get_fire_title()
+        send_new_status_for(fire_info, output_path)
