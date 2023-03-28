@@ -37,7 +37,7 @@ jobs:
           cd /home/runner/work/california_fire/california_fire/
           git config user.name "Automated"
           git config user.email "actions@users.noreply.github.com"
-          git add outputs/earthquake.json
+          git add outputs/fire.json outputs/previous_fire_data.json
           timestamp=$(date -u)
           git commit -m "Latest response: ${timestamp}" || exit 0
           git push
