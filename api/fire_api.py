@@ -15,6 +15,9 @@ def request_fire():
 
 
 def get_dup_fire_data(new_fire_data, prev):
+    """ This function will return the index of the duplicate data.
+    By comparing the UniqueId of the previous and latest response. """
+
     prev_data = read_json(prev)
     new_data = new_fire_data
 
@@ -32,10 +35,13 @@ def get_dup_fire_data(new_fire_data, prev):
 
 
 def save_latest_fire_data(new_json_data, prev):
+    """ Save the all latest response into previous json file. """
     write_json(new_json_data, prev)
 
 
 def prepare_ready_to_use_data(dup_index_list, new_fire_data, fire_json_output):
+    """ Use duplication index list to remove the duplicate data out from latest response. """
+
     new_data = new_fire_data
 
     if not dup_index_list == []:
