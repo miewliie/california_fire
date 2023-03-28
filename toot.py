@@ -47,3 +47,5 @@ if __name__ == '__main__':
         draw_fire_points(image_path, output_path, fire_data)
         fire_info = get_fire_title()
         send_new_status_for(fire_info, output_path)
+    else:
+        print("No fire")
