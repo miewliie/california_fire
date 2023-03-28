@@ -1,10 +1,16 @@
+import os
 import json
 import datetime
 
 
 def read_json_output():
-    with open('./outputs/fire.json', "r", encoding="utf-8") as output_file:
-        data = json.loads(output_file.read())
+    file_path = './outputs/fire.json'
+    with open(file_path, "r", encoding="utf-8") as output_file:
+        size = os.path.getsize(file_path)
+        if size > 0:
+            data = json.loads(output_file.read())
+        else:
+            data = None
         return data
 
 
