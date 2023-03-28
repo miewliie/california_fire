@@ -1,21 +1,10 @@
-import os
-import json
 import datetime
-
-
-def read_json_output():
-    file_path = './outputs/fire.json'
-    with open(file_path, "r", encoding="utf-8") as output_file:
-        size = os.path.getsize(file_path)
-        if size > 0:
-            data = json.loads(output_file.read())
-        else:
-            data = None
-        return data
+from utilities.json_util import read_json
 
 
 def get_fire_title():
-    fire_data = read_json_output()
+    file_path = './outputs/fire.json'
+    fire_data = read_json(file_path)
     titles = []
 
     for obj in fire_data:
