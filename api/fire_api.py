@@ -1,7 +1,6 @@
 import requests
-import os
 import datetime
-import json
+from utilities.json_util import read_json, write_json
 
 URL = "https://incidents.fire.ca.gov/umbraco/api/IncidentApi/List?"
 STATUS = 'false'
@@ -13,22 +12,6 @@ def request_fire():
     response = requests.get(URL + 'inactive=' + STATUS + '&year=' + str(YEAR))
     json_data = response.json()
     return json_data
-
-
-def write_json(data, file_path):
-    with open(file_path, 'w', encoding='utf-8') as output_file:
-        json.dump(data, output_file)
-        print("Done write response into json file")
-
-
-def read_json(file_path):
-    with open(file_path, 'r', encoding='utf-8') as output_file:
-        size = os.path.getsize(file_path)
-        if size > 0:
-            data = json.loads(output_file.read())
-        else:
-            data = None
-        return data
 
 
 def get_dup_fire_data(new_fire_data, prev):
