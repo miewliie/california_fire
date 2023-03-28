@@ -2,9 +2,9 @@ import datetime
 from utilities.json_util import read_json
 
 
-def get_fire_title():
-    file_path = './outputs/fire.json'
-    fire_data = read_json(file_path)
+def get_fire_title(fire_data):
+    """ Prepare fire location, datetime and acres burned messages. """
+
     titles = []
 
     for obj in fire_data:
