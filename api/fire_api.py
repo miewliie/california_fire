@@ -1,14 +1,16 @@
 import requests
 import os
+import datetime
 import json
 
 URL = "https://incidents.fire.ca.gov/umbraco/api/IncidentApi/List?"
-STATUS = 'true'
-YEAR = '2022'
+STATUS = 'false'
+YEAR = datetime.datetime.now().year
 
 
 def request_fire():
-    response = requests.get(URL + 'inactive=' + STATUS + '&year=' + YEAR)
+    print('Year: ', YEAR)
+    response = requests.get(URL + 'inactive=' + STATUS + '&year=' + str(YEAR))
     json_data = response.json()
     return json_data
 
@@ -70,4 +72,3 @@ if __name__ == '__main__':
         dup_list = get_dup_fire_data(fire_data, prev_json_path)
         save_latest_fire_data(fire_data, prev_json_path)
         prepare_ready_to_use_data(dup_list, fire_data, fire_json_path)
-
