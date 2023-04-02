@@ -1,5 +1,4 @@
 import datetime
-from utilities.json_util import read_json
 
 
 def get_fire_title(fire_data):
