@@ -2,8 +2,8 @@ name: Fire Toot workflow
 
 on:
   workflow_dispatch:
-#   schedule:
-#     - cron: "1 */3 * * *"
+   schedule:
+     - cron: "30 * * * *"
 
 jobs:
   toot:
@@ -14,8 +14,8 @@ jobs:
 
       - name: Request fire data and write into Json file
         run: |-
-          cd /home/runner/work/california_fire/california_fire/api 
-          python3 fire_api.py
+          cd /home/runner/work/california_fire/california_fire/ 
+          python3 start.py
           
       - name: Install dependencies 
         run: |-
