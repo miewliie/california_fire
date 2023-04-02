@@ -3,7 +3,7 @@ import os
 from mastodon import Mastodon
 from draw.draw_fire import draw_fire_points
 from fire.fire import get_fire_title
-from utilities.json_util import read_json
+from utilities.json_handler import read_json
 
 
 USER = os.getenv('MASTODON_EMAIL')
