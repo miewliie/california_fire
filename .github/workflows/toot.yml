@@ -15,6 +15,7 @@ jobs:
       - name: Request fire data and write into Json file
         run: |-
           cd /home/runner/work/california_fire/california_fire/ 
+          ls
           python3 start.py
           
       - name: Install dependencies 
