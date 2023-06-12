@@ -7,7 +7,7 @@ STATUS = 'false'
 YEAR = datetime.datetime.now().year
 
 
-def request_fire():
+def fetch_fires():
     print('Year: ', YEAR)
     response = requests.get(URL + 'inactive=' + STATUS + '&year=' + str(YEAR))
     json_data = response.json()
