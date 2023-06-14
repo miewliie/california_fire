@@ -4,6 +4,8 @@ from california_fire.social.social_manager import social_manager
 from california_fire.storage import storage_manager
 
 OLD_PATH = 'outputs/old_fire.json'
+BASE_IMAGE_PATH = 'assets/california_base_map.png'
+OUTPUT_PATH = 'outputs/california_fire_map.png'
 
 
 def filter_out_dup_fire(old_fires: list[Fire], new_fires: list[Fire]) -> list[Fire]:
@@ -26,7 +28,7 @@ def main():
         print("No new fire.")
         return
 
-    social_manager(fires=filtered_fires)
+    social_manager(fires=filtered_fires, base_image_path=BASE_IMAGE_PATH, output_path=OUTPUT_PATH)
 
 
 if __name__ == '__main__':
