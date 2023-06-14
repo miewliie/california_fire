@@ -11,7 +11,7 @@ class TestDataHandler(unittest.TestCase):
     def test_read_json_output_json_if_content_exist(self):
         input_value: str = repr([{'key': 'value'}])
         expected_value: str = repr([{'key': 'value'}])
-        file_path: str = 'test_data/read_json.json'
+        file_path: str = 'tests/storage/test_data/read_json.json'
 
         mock_file = mock.mock_open(read_data=json.dumps(input_value))
         with mock.patch('california_fire.storage.data_handler.open', mock_file) as mock_open:
@@ -22,7 +22,7 @@ class TestDataHandler(unittest.TestCase):
     def test_read_json_output_none_if_no_content(self):
         input_value = 'Any content'
         expected_value = None
-        file_path: str = 'test_data/read_json.json'
+        file_path: str = 'tests/storage/test_data/read_json.json'
 
         mock_file = mock.mock_open(read_data=json.dumps(input_value))
         with mock.patch('california_fire.storage.data_handler.open', mock_file) as mock_open, \
