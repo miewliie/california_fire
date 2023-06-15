@@ -5,6 +5,7 @@ __pycache__/
 
 .idea
 .vscode
+htmlcov/
 
 # C extensions
 *.so
