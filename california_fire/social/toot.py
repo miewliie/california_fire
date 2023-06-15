@@ -28,22 +28,7 @@ def send_new_toot(message: str, image_path: str):
 
     mastodon = connect_to_mastodon()
 
-    image_id = mastodon.media_post(image_path)
+    image_id = mastodon.media_post(media_file=image_path)
     post_dict = mastodon.status_post(
-        message, in_reply_to_id=None, media_ids=image_id)
+        status=message, in_reply_to_id=None, media_ids=image_id)
     print("post id: ", post_dict.id)
-
-
-# if __name__ == '__main__':
-#
-#     image_path = "../../assets/california_base_map.png"
-#     output_path = "../../outputs/california_fire_map.png"
-#     file_path = '../../outputs/fire.json'
-#
-#     fire_data = read_json(file_path)
-#     if fire_data:
-#         draw_fire_points(image_path, output_path, fire_data)
-#         fire_info = get_fire_title(fire_data)
-#         send_new_status_for(fire_info, output_path)
-#     else:
-#         print("No fire")
