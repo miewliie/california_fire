@@ -36,9 +36,9 @@ class TestSocialComposer(unittest.TestCase):
                                   latitude=34.293103,
                                   longitude=-117.565833,
                                   url='https://incidents.fire.ca.gov/incidents/2023/4/26/nob-fire/')]
-        expected_msg = '📍East Blue Ridge and Paiute, south of Wrightwood\n' \
-                       '⏰2023-04-26 10:16🔥1 acres\n' \
-                       '#california #californiawildfire #californiafire'
+        expected_msg: str = '📍East Blue Ridge and Paiute, south of Wrightwood\n' \
+                            '⏰2023-04-26 10:16🔥1 acres\n' \
+                            '#california #californiawildfire #californiafire'
 
         with mock.patch('california_fire.social.social_composer.compose_message',
                         return_value=expected_msg):
@@ -58,11 +58,11 @@ class TestSocialComposer(unittest.TestCase):
                                   latitude=33.569342,
                                   longitude=-116.092746,
                                   url='https://incidents.fire.ca.gov/incidents/2023/5/15/66-fire/')]
-        expected_msg = '📍East Blue Ridge and Paiute, south of Wrightwood\n' \
-                       '⏰2023-04-26 10:16🔥1 acres\n' \
-                       '📍Ave 66 and Hwy 86\n' \
-                       '⏰2023-05-15 12:10🔥127.0 acres\n' \
-                       '#california #californiawildfire #californiafire'
+        expected_msg: str = '📍East Blue Ridge and Paiute, south of Wrightwood\n' \
+                            '⏰2023-04-26 10:16🔥1 acres\n' \
+                            '📍Ave 66 and Hwy 86\n' \
+                            '⏰2023-05-15 12:10🔥127.0 acres\n' \
+                            '#california #californiawildfire #californiafire'
         with mock.patch('california_fire.social.social_composer.compose_message',
                         return_value=expected_msg):
             message = compose_message(fires=fires)
@@ -75,9 +75,9 @@ class TestSocialComposer(unittest.TestCase):
                                   latitude=34.293103,
                                   longitude=-117.565833,
                                   url='https://incidents.fire.ca.gov/incidents/2023/4/26/nob-fire/')]
-        expected_msg = '📍East Blue Ridge and Paiute, south of Wrightwood\n' \
-                       '⏰2023-04-26 10:16🔥0 acre\n' \
-                       '#california #californiawildfire #californiafire'
+        expected_msg: str = '📍East Blue Ridge and Paiute, south of Wrightwood\n' \
+                            '⏰2023-04-26 10:16🔥0 acre\n' \
+                            '#california #californiawildfire #californiafire'
 
         with mock.patch('california_fire.social.social_composer.compose_message',
                         return_value=expected_msg):
