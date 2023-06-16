@@ -13,7 +13,7 @@ def connect_to_mastodon():
     Mastodon.create_app(
         'pytooterapp',
         api_base_url=MASTODON_SERVER,
-        to_file='../../pytooter_clientcred.secret'
+        to_file='pytooter_clientcred.secret'
     )
 
     mastodon = Mastodon(client_id='pytooter_clientcred.secret',)
