@@ -12,22 +12,20 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Request fire data and write into Json file
-        run: |-
-          cd /home/runner/work/california_fire/california_fire/ 
-          ls
-          python3 start.py
-          
       - name: Install dependencies 
         run: |-
           cd /home/runner/work/california_fire/california_fire
-          pip3 install Mastodon.py
-          python3 -m pip install --upgrade Pillow
+          pip3 install -r requirements.txt
+
+      - name: Run tests
+        run: |-
+          cd /home/runner/work/california_fire/california_fire
+          python3 -m unittest discover
 
       - name: Post fire title and map into Mastodon
         run: |-
           cd /home/runner/work/california_fire/california_fire
-          python3 toot.py
+          python3 main.py
         env:
           MASTODON_EMAIL: ${{ secrets.MASTODON_EMAIL }}
           MASTODON_PASSWORD: ${{ secrets.MASTODON_PASSWORD }}
@@ -38,7 +36,7 @@ jobs:
           cd /home/runner/work/california_fire/california_fire/
           git config user.name "Automated"
           git config user.email "actions@users.noreply.github.com"
-          git add outputs/fire.json outputs/previous_fire_data.json
+          git add outputs/old_fire.json
           timestamp=$(date -u)
           git commit -m "Latest response: ${timestamp}" || exit 0
           git push
