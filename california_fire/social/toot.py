@@ -30,4 +30,4 @@ def send_new_toot(message: str, image_path: str):
     image_id = mastodon.media_post(media_file=image_path)
     post_dict = mastodon.status_post(
         status=message, in_reply_to_id=None, media_ids=image_id)
-    print("post id: ", post_dict.id)
+    logging.info(f"Post ID: {post_dict.id}")

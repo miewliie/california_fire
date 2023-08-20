@@ -1,3 +1,4 @@
+import logging
 import requests
 import datetime
 
@@ -8,14 +9,12 @@ TIMEOUT = 10 # seconds
 
 
 def fetch_fires():
-    print('Year: ', YEAR)
+    logging.info(f'Fetching fires for year: {YEAR}')
+    fire_url = f"{URL}inactive={STATUS}&year={YEAR}"
+    
     try:
-        response = requests.get(URL + 'inactive=' + STATUS + '&year=' + str(YEAR))
+        response = requests.get(fire_url, timeout=TIMEOUT)
+        return response.json()
     except requests.exceptions.Timeout:
-        print(f"Requests timed out after {TIMEOUT} seconds")
-        
-    json_data = response.json()
-    return json_data
-
-
-
+        logging.critical("Fetch fires request timed out after {TIMEOUT} seconds (URL: {fire_url})")
+        return []

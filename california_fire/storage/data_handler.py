@@ -1,6 +1,7 @@
 """Provide functions to handle fire data."""
 import json
 import os
+import logging 
 from typing import Any
 
 from california_fire.core.fire import Fire
@@ -17,7 +18,7 @@ def write_json(data:  list[dict[str, Any]], file_path: str):
     """ Write data to json file."""
     with open(file_path, 'w', encoding='utf-8') as output_file:
         json.dump(data, output_file)
-        print("Done write data into json file")
+    logging.info(f"Done writing data to json at {file_path}")
 
 
 def from_dict_to_fire(dict_data: dict[str, Any]) -> Fire:

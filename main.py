@@ -1,3 +1,5 @@
+import logging
+
 from california_fire.core import network_manager
 from california_fire.core.fire import Fire
 from california_fire.social.social_manager import social_manager
@@ -14,10 +16,12 @@ def filter_out_dup_fire(old_fires: list[Fire], new_fires: list[Fire]) -> list[Fi
 
 
 def main():
+    logging.basicConfig(level=logging.INFO)
+
     new_fires: list[Fire] = network_manager.get_fire_data()
 
     if not new_fires:
-        print("No fire fire from api.")
+        logging.info("No new fire from api; Exiting")
         return
 
     old_fires: list[Fire] = storage_manager.read_fire_data(old_fire_path=OLD_PATH)
@@ -25,7 +29,7 @@ def main():
     filtered_fires: list[Fire] = filter_out_dup_fire(old_fires=old_fires, new_fires=new_fires)
 
     if not filtered_fires:
-        print("No new fire.")
+        logging.info("No new fire from api; Exiting")
         return
 
     social_manager(fires=filtered_fires, base_image_path=BASE_IMAGE_PATH, output_path=OUTPUT_PATH)
