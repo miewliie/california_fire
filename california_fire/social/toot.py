@@ -1,4 +1,5 @@
 import os
+import logging
 from mastodon import Mastodon
 
 
@@ -17,9 +18,7 @@ def connect_to_mastodon():
     )
 
     mastodon = Mastodon(client_id='pytooter_clientcred.secret',)
-    mastodon.log_in(
-        USER,
-        PASSWORD)
+    mastodon.log_in(USER, PASSWORD)
     return mastodon
 
 
