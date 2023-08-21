@@ -1,10 +1,10 @@
+"""Provide functions to handle fire data."""
 import json
 import os
+import logging 
 from typing import Any
 
 from california_fire.core.fire import Fire
-
-"""Provide functions handle fire data."""
 
 
 def read_json(file_path: str):
@@ -18,7 +18,7 @@ def write_json(data:  list[dict[str, Any]], file_path: str):
     """ Write data to json file."""
     with open(file_path, 'w', encoding='utf-8') as output_file:
         json.dump(data, output_file)
-        print("Done write data into json file")
+    logging.info(f"Done writing data to json at {file_path}")
 
 
 def from_dict_to_fire(dict_data: dict[str, Any]) -> Fire:
@@ -47,15 +47,9 @@ def to_dict(fire_data: Fire) -> dict[str, Any]:
 
 def fire_encoder(fire_data: list[dict[str, Any]]) -> list[Fire]:
     """Convert list of dictionary to list of Fire object."""
-    fires: list[Fire] = []
-    for fire in fire_data:
-        fires.append(from_dict_to_fire(dict_data=fire))
-    return fires
+    return [from_dict_to_fire(dict_data=fire) for fire in fire_data]
 
 
 def fire_decoder(fires_data: list[Fire]) -> list[dict[str, Any]]:
     """Convert list of Fire object to list of dictionary."""
-    fires: list[dict[str, Any]] = []
-    for fire in fires_data:
-        fires.append(to_dict(fire_data=fire))
-    return fires
+    return [to_dict(fire_data=fire) for fire in fires_data]

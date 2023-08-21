@@ -1,6 +1,5 @@
-from typing import NamedTuple
-
 """Provides a Fire class"""
+from typing import NamedTuple
 
 
 class Fire(NamedTuple):

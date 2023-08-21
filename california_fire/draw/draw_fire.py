@@ -40,24 +40,22 @@ def draw_fire_map(base_image_path: str, output_path: str, fire_data: list[Fire])
         lon_x_pixel: float = convert_lon_to_x_pixel(im_width, x_longitude)
         lat_y_pixel: float = convert_lat_to_y_pixel(im_height, y_latitude)
 
+        outline_color: str = 'orange'
         if not acres_burned:
             radius: int = 10
-            outline_color: str = 'orange'
             outline_width: int = 5
         elif acres_burned <= 1000:
             radius: int = 20
-            outline_color: str = 'orange'
             outline_width: int = 10
         elif acres_burned <= 10000:
             radius: int = 30
-            outline_color: str = 'orange'
             outline_width: int = 15
         else:
             radius: int = 40
-            outline_color: str = 'orange'
             outline_width: int = 20
 
-        draw.ellipse((lon_x_pixel - radius, lat_y_pixel - radius, lon_x_pixel + radius, lat_y_pixel + radius),
+        draw.ellipse((lon_x_pixel - radius, lat_y_pixel - radius,
+                      lon_x_pixel + radius, lat_y_pixel + radius),
                      fill='red', outline=outline_color, width=outline_width)
 
     image.save(output_path)
