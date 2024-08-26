@@ -22,7 +22,7 @@ def connect_to_mastodon():
     return mastodon
 
 
-def send_new_toot(message: str, image_path: str):
+def send_new_toot(message: str, replies: list, image_path: str):
     """ Post fire status and fire recent map. """
 
     mastodon = connect_to_mastodon()
@@ -31,3 +31,7 @@ def send_new_toot(message: str, image_path: str):
     post_dict = mastodon.status_post(
         status=message, in_reply_to_id=None, media_ids=image_id)
     logging.info(f"Post ID: {post_dict.id}")
+    if replies:
+        for reply in replies:
+            reply_dict = mastodon.status_post( status=reply, in_reply_to_id=post_dict.id)
+            logging.info(f"Replies ID: {reply_dict.id}")
