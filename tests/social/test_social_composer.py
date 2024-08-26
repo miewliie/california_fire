@@ -77,7 +77,7 @@ class TestSocialComposer(unittest.TestCase):
                             '⏰2023-04-26 10:16🔥2 acres\n' \
                             '📍3East Blue Ridge and Paiute, south of Wrightwood\n' \
                             '⏰2023-04-26 10:16🔥3 acres\n' \
-                            '👉 More fire on reply...\n' \
+                            '👇 More fire on reply...\n' \
                             '#california #californiawildfire #californiafire'
                             
         expected_reply: list = ['📍Ave 66 and Hwy 86\n' \

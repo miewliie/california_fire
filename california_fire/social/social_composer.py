@@ -5,13 +5,13 @@ from california_fire.draw.draw_fire import draw_fire_map
 
 
 def create_map(fires: list[Fire], base_image_path: str, output_path: str) -> str:
-    """Create a map with markers for each fire. """
+    """Create a map with markers for each fire."""
     map_path = draw_fire_map(fire_data=fires, base_image_path=base_image_path, output_path=output_path)
     return map_path
 
 
 def compose_message(fires: list[Fire]) -> str:
-    """Compose a message for the new fire. """
+    """Compose a message for the new fire."""
     messages: list[str] = []
     replies: list[str] = []
     reply_list: list[str] = []
@@ -29,7 +29,7 @@ def compose_message(fires: list[Fire]) -> str:
             replies.append(message)
 
     if replies: 
-        messages.append("👉 More fire on reply...") 
+        messages.append("👇 More fire on reply...") 
         reply_list: list = compose_reply_message(replies=replies)
     messages.append("#california #californiawildfire #californiafire")
     post: list[str] = '\n'.join(messages)
